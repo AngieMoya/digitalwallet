@@ -19,7 +19,7 @@ export default function SignUp() {
           <label htmlFor="cel">Número celular</label>
           <input
             className="rounded-xl p-2 text-indigo-900"
-            type="text"
+            type="tel"
             name="cel"
             placeholder="Número celular"
             id="cel"

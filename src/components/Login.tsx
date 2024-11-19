@@ -9,7 +9,7 @@ export default function Login() {
           <label htmlFor="cel">Número celular</label>
           <input
             className="rounded-xl p-2 text-indigo-900"
-            type="text"
+            type="tel"
             name="cel"
             placeholder="Número Celular"
             id="cel"
@@ -25,11 +25,13 @@ export default function Login() {
             id="password"
           ></input>
         </div>
-        <input
-          className="rounded-xl p-2 bg-indigo-900 w-full"
-          type="submit"
-          value="Entrar"
-        />
+        <Link href={"/wallet"}>
+          <input
+            className="rounded-xl p-2 bg-indigo-900 w-full"
+            type="submit"
+            value="Entrar"
+          />
+        </Link>
         <Link className="text-indigo-900 font-semibold" href={"/sign-up"}>
           No tienes cuenta?
         </Link>
