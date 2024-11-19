@@ -1,7 +1,9 @@
+import Signup from "@/components/Signup";
+
 export default function SignUp() {
   return (
-    <div>
-      <h2>registrate</h2>
+    <div className="flex flex-col items-center justify-center h-screen">
+      <Signup></Signup>
     </div>
   );
 }
