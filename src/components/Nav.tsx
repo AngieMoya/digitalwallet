@@ -5,25 +5,25 @@ export default function Nav() {
     <nav className="p-8 w-full flex justify-between">
       <Link
         className="font-semibold text-fuchsia-600 hover:text-indigo-900"
-        href={""}
+        href={"/wallet"}
       >
         Inicio
       </Link>
       <Link
         className="font-semibold text-fuchsia-600 hover:text-indigo-900"
-        href={""}
+        href={"/movements"}
       >
         Movimientos
       </Link>
       <Link
         className="font-semibold text-fuchsia-600 hover:text-indigo-900"
-        href={""}
+        href={"myservices"}
       >
         Servicios
       </Link>
       <Link
         className="font-semibold text-fuchsia-600 hover:text-indigo-900"
-        href={""}
+        href={"/"}
       >
         Cerrar sesión
       </Link>
