@@ -30,7 +30,7 @@ export default function SignUp() {
           type="submit"
           value="Crear cuenta"
         />
-        <Link className="text-indigo-900 font-semibold" href={"/login"}>
+        <Link className="text-indigo-900 font-semibold" href={"/"}>
           Ingresa a tu cuenta
         </Link>
       </form>
