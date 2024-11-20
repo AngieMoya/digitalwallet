@@ -1,3 +1,5 @@
+"use client";
+
 export default function Withdraws() {
   return (
     <div className="flex flex-col h-screen items-center justify-center w-full">
@@ -18,6 +20,7 @@ export default function Withdraws() {
           className="rounded-xl p-2 bg-indigo-900 w-full text-white hover:bg-indigo-600"
           type="button"
           value="Retirar"
+          onClick={() => {}}
         />
       </form>
     </div>

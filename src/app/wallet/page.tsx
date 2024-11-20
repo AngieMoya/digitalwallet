@@ -7,7 +7,7 @@ import { useRouter } from "next/navigation";
 export default function WalletHome() {
   const router = useRouter();
   return (
-    <div className="flex flex-col items-center justify-center">
+    <div>
       <Nav />
       <div className="flex flex-col h-screen items-center justify-center w-full">
         <h1 className="pb-8 font-bold text-3xl text-indigo-900">
