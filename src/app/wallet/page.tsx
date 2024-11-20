@@ -28,7 +28,12 @@ export default function WalletHome() {
               router.push("/reload");
             }}
           ></Button>
-          <Button text={"Retira"}></Button>
+          <Button
+            text={"Retira"}
+            onClick={() => {
+              router.push("/withdraws");
+            }}
+          ></Button>
         </div>
       </div>
     </div>

@@ -17,7 +17,7 @@ export default function Form(props: FormProps) {
         </div>
         <div className="flex flex-col pb-4">
           <label htmlFor="cel">{input2}</label>
-          <input className="border rounded-xl p-2" type="text" />
+          <input className="border rounded-xl p-2" type="number" />
         </div>
         <input
           className="rounded-xl p-2 bg-indigo-900 w-full text-white hover:bg-indigo-600"
