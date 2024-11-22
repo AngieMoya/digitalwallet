@@ -1,6 +1,6 @@
 export default function Card() {
   return (
-    <div className="flex flex-col items-center p-4 bg-teal-100 text-sm w-96 rounded-xl text-gray-600">
+    <div className="flex w-96 flex-col items-center rounded-xl bg-teal-100 p-4 text-sm text-gray-600">
       <ul className="text-xl">
         <li>
           <p>Fecha: 20/11/2024</p>

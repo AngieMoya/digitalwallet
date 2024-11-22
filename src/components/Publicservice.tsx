@@ -1,29 +1,25 @@
 export default function PublicService() {
   return (
-    <div className="p-4 flex flex-col border rounded-xl w-96">
+    <div className="flex w-96 flex-col rounded-xl border p-4">
       <form className="flex flex-col items-center">
-        <div className="flex flex-col pb-2 w-full">
+        <div className="flex w-full flex-col pb-2">
           <label htmlFor="services">Selecciona el servicio</label>
-          <select
-            className="p-2 border rounded-xl"
-            name="services"
-            id="services"
-          >
+          <select className="rounded-xl border p-2" name="services" id="services">
             <option value="water">TripeA</option>
             <option value="energy">Air-e</option>
             <option value="gas">Gases del caribe</option>
           </select>
         </div>
-        <div className="flex flex-col pb-2 w-full">
+        <div className="flex w-full flex-col pb-2">
           <label htmlFor="reference">Número de referencia</label>
-          <input className="p-2 border rounded-xl" type="text" />
+          <input className="rounded-xl border p-2" type="text" />
         </div>
-        <div className="flex flex-col pb-4 w-full">
+        <div className="flex w-full flex-col pb-4">
           <label htmlFor="value">Valor a cancelar</label>
-          <input className="p-2 border rounded-xl" type="number" />
+          <input className="rounded-xl border p-2" type="number" />
         </div>
         <input
-          className="p-2 bg-indigo-900 hover:bg-indigo-700 text-white font-semibold rounded-xl w-full"
+          className="w-full rounded-xl bg-indigo-900 p-2 font-semibold text-white hover:bg-indigo-700"
           type="button"
           value="Pagar"
         />

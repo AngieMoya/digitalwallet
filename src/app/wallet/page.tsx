@@ -1,37 +1,44 @@
-"use client";
+'use client';
 
-import Button from "@/components/Button";
-import Nav from "@/components/Nav";
-import { useRouter } from "next/navigation";
+import { getBalance } from '@/actions';
+import Button from '@/components/Button';
+import Nav from '@/components/Nav';
+import { useRouter } from 'next/navigation';
+import { useActionState, useEffect, startTransition } from 'react';
 
 export default function WalletHome() {
   const router = useRouter();
+  const [state, fetchBalance] = useActionState(getBalance, null);
+  useEffect(() => {
+    startTransition(() => {
+      fetchBalance();
+    });
+  }, []);
+
   return (
     <div>
       <Nav />
-      <div className="flex flex-col h-screen items-center justify-center w-full">
-        <h1 className="pb-8 font-bold text-3xl text-indigo-900">
-          Mi Billetera
-        </h1>
+      <div className="flex h-screen w-full flex-col items-center justify-center">
+        <h1 className="pb-8 text-3xl font-bold text-indigo-900">Mi Billetera</h1>
         <h2 className="text-2xl font-semibold text-indigo-900">Saldo</h2>
-        <p className="text-xl font-semibold">$0.00</p>
-        <div className="flex p-8 justify-evenly w-2/4 min-w-min">
+        <p className="text-xl font-semibold">${parseInt(state?.balance || 0, 10).toFixed(2) || '0.00'}</p>
+        <div className="flex w-2/4 min-w-min justify-evenly p-8">
           <Button
-            text={"Envía"}
+            text={'Envía'}
             onClick={() => {
-              router.push("/send");
+              router.push('/send');
             }}
           ></Button>
           <Button
-            text={"Recarga"}
+            text={'Recarga'}
             onClick={() => {
-              router.push("/reload");
+              router.push('/reload');
             }}
           ></Button>
           <Button
-            text={"Retira"}
+            text={'Retira'}
             onClick={() => {
-              router.push("/withdraws");
+              router.push('/withdraws');
             }}
           ></Button>
         </div>
