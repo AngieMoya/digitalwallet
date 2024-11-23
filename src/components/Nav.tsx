@@ -1,4 +1,6 @@
+'use client';
 import Link from 'next/link';
+import Cookies from 'js-cookie';
 
 export default function Nav() {
   return (
@@ -12,7 +14,13 @@ export default function Nav() {
       <Link className="font-semibold text-fuchsia-600 hover:text-indigo-900" href={'myservices'}>
         Servicios
       </Link>
-      <Link className="font-semibold text-fuchsia-600 hover:text-indigo-900" onClick={async () => {}} href="/">
+      <Link
+        className="font-semibold text-fuchsia-600 hover:text-indigo-900"
+        onClick={() => {
+          Cookies.remove('userId', { path: '/' });
+        }}
+        href="/"
+      >
         Cerrar sesión
       </Link>
     </nav>

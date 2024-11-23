@@ -14,10 +14,7 @@ export async function getUser(prevState: unknown, formData: FormData) {
     console.log('RES', query);
     if (!!query.length) {
       const user = query[0];
-      (await cookies()).set('userId', user.id.toString(), {
-        httpOnly: true,
-        secure: true,
-      });
+      (await cookies()).set('userId', user.id.toString());
     } else return { error: 'Usuario no registrado o credenciales incorrectas' };
   } catch (error) {
     console.error('Error fetching user:', error);

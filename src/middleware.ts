@@ -3,13 +3,18 @@ import type { NextRequest } from 'next/server';
 
 // This function can be marked `async` if using `await` inside
 export function middleware(request: NextRequest) {
-  const cookies = request.cookies;
+  const {
+    cookies,
+    nextUrl: { pathname },
+  } = request;
   const userId = cookies.get('userId')?.value;
 
   console.log('userId', userId);
-  console.log('URL', request.nextUrl.pathname);
+  console.log('URL', pathname);
 
-  if (request.nextUrl.pathname !== '/' && !userId) {
+  const unprotectedRoutes = ['/', '/sign-up'];
+
+  if (!unprotectedRoutes.includes(pathname) && !userId) {
     return NextResponse.redirect(new URL('/', request.url));
   }
   return NextResponse.next();
