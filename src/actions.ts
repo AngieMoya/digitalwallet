@@ -71,3 +71,32 @@ export async function newUser(prevState: unknown, formData: FormData) {
   }
   redirect('/');
 }
+
+export async function newTransfer(prevState: unknown, formData: FormData) {
+  const sql = neon(process.env.DATABASE_URL || '');
+  console.log(formData);
+
+  const userId = (await cookies()).get('userId')?.value;
+  if (!userId) return { error: 'Usuario no autenticado' };
+
+  const type = 'envia';
+  const cellular = formData.get('cel');
+  const customerId = parseInt(userId, 10);
+  const amount = formData.get('value');
+  const description = formData.get('description');
+
+  try {
+    const query = await sql(`SELECT id FROM "Customers" WHERE cellular = $1 `, [cellular]);
+
+    console.log('destino', query[0].id);
+    const destinationId = query[0].id;
+
+    await sql(
+      `INSERT INTO "Transactions" ("type","destination_id", "destination","customer_id","amount","description") VALUES ($1, $2, $3, $4, $5, $6)`,
+      [type, destinationId, cellular, customerId, amount, description],
+    );
+  } catch (error) {
+    console.error('Error creating transfer:', error);
+    return { error: 'Error en la transacción' };
+  }
+}
