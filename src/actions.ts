@@ -128,3 +128,30 @@ export async function newReload(prevState: unknown, formData: FormData) {
     return { error: 'Error en la transacción' };
   }
 }
+
+export async function newWithdraw(prevState: unknown, formData: FormData) {
+  const sql = neon(process.env.DATABASE_URL || '');
+  console.log(formData);
+
+  const userId = (await cookies()).get('userId')?.value;
+  if (!userId) return { error: 'Usuario no autenticado' };
+
+  const type = 'retira';
+  const customerId = parseInt(userId, 10);
+  const amount = formData.get('value');
+
+  try {
+    const query = await sql(`SELECT cellular FROM "Customers" WHERE id = $1 `, [customerId]);
+
+    console.log('destino', query[0].cellular);
+    const destination = query[0].cellular;
+
+    await sql(
+      `INSERT INTO "Transactions" ("type","atm_id","destination_id", "destination","customer_id","amount") VALUES ($1, $2, $3, $4, $5, $6)`,
+      [type, 1, null, destination, customerId, amount],
+    );
+  } catch (error) {
+    console.error('Error creating transfer:', error);
+    return { error: 'Error en la transacción' };
+  }
+}
