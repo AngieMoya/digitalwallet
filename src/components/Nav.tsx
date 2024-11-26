@@ -18,6 +18,7 @@ export default function Nav() {
         className="font-semibold text-fuchsia-600 hover:text-indigo-900"
         onClick={() => {
           Cookies.remove('userId', { path: '/' });
+          Cookies.remove('cellular', { path: '/' });
         }}
         href="/"
       >
