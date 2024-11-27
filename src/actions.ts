@@ -194,3 +194,55 @@ export async function newMovements() {
     return { error: 'Error en la transacción' };
   }
 }
+
+export async function newPublicService(prevState: unknown, formData: FormData) {
+  const sql = neon(process.env.DATABASE_URL || '');
+  console.log(formData);
+
+  const userId = (await cookies()).get('userId')?.value;
+  const cellular = (await cookies()).get('cellular')?.value;
+  if (!userId || !cellular) return { error: 'Usuario no autenticado' };
+
+  const customerId = parseInt(userId, 10);
+  const type = 'servicio';
+  const name = formData.get('services');
+  const reference = formData.get('reference');
+  const amount = formData.get('value');
+
+  try {
+    await sql(
+      `INSERT INTO "Transactions" ("type", "destination","origin","customer_id","amount", description) VALUES ($1, $2, $3, $4, $5, $6)`,
+      [type, reference, cellular, customerId, amount, name],
+    );
+  } catch (error) {
+    console.error('Error creating transfer:', error);
+    return { error: 'Error en la transacción' };
+  }
+}
+
+export async function newMobileServices(prevState: unknown, formData: FormData) {
+  const sql = neon(process.env.DATABASE_URL || '');
+  console.log(formData);
+
+  const userId = (await cookies()).get('userId')?.value;
+  const cellular = (await cookies()).get('cellular')?.value;
+  if (!userId || !cellular) return { error: 'Usuario no autenticado' };
+
+  const customerId = parseInt(userId, 10);
+  const type = 'servicio';
+  const product = formData.get('product');
+  const destination = formData.get('cel');
+
+  try {
+    const query = await sql(`SELECT amount FROM "Services" WHERE description = $1`, [product]);
+    const price = query[0].amount;
+
+    await sql(
+      `INSERT INTO "Transactions" ("type", "destination","origin","customer_id","amount", description) VALUES ($1, $2, $3, $4, $5, $6)`,
+      [type, destination, cellular, customerId, price, product],
+    );
+  } catch (error) {
+    console.error('Error creating transfer:', error);
+    return { error: 'Error en la transacción' };
+  }
+}

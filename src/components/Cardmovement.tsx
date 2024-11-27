@@ -13,25 +13,25 @@ export default function CardMovement(props: CardMovementProps) {
   const { date, typeTransaction, destiny, origin, amount, description } = props;
 
   return (
-    <div className="flex w-96 flex-col items-center rounded-xl bg-teal-100 p-4 text-sm text-gray-600">
-      <ul className="text-xl">
+    <div className="flex w-96 flex-col items-center rounded-xl border-2 p-4 text-sm text-gray-600 shadow-lg">
+      <ul className="text-xl font-semibold">
         <li>
-          <p>Fecha:{formatDateWithIntl(date)}</p>
+          <p>Fecha: {formatDateWithIntl(date)}</p>
         </li>
         <li>
-          <p>Tipo de transacción:{typeTransaction}</p>
+          <p>Tipo de transacción: {typeTransaction}</p>
         </li>
         <li>
-          <p>Destino:{destiny}</p>
+          <p>Destino: {destiny}</p>
         </li>
         <li>
-          <p>Origen:{origin}</p>
+          <p>Origen: {origin}</p>
         </li>
         <li>
-          <p>Valor:{amount}</p>
+          <p>Valor: {amount}</p>
         </li>
         <li>
-          <p>Descripción:{description}</p>
+          <p>Descripción: {description}</p>
         </li>
       </ul>
     </div>
